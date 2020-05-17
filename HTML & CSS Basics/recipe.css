@@ -1,0 +1,74 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ddd;
+}
+
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: #666;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover:not(.active) {
+  background-color: #ADD8E6;
+  color: white;
+}
+li a.active {
+  color: white;
+  background-color: #ADD8E6;
+}
+
+body {
+  background-color: lightgray;
+  margin: 0;
+}
+
+#name {
+  text-align: center;
+  font-size: 350%;
+  font-family: "Candara";
+}
+
+h4 {
+  font-family: "Candara";
+  text-align: center;
+}
+
+.col-lg {
+  margin: 5%;
+  text-align: center;
+  position: relative;
+}
+
+@media (min-width: 770px) {
+  .meringue, .fry, .berry {
+    padding-top: 25%;
+    font-weight: bold;
+  }
+}
+@media (max-width: 769px) {
+  .meringue, .fry, .berry {
+    padding-top: 10%;
+    font-weight: bold;
+    font-size: 150%;
+  }
+}
+.berry {
+  color: red;
+}
+
+.fry {
+  color: #df950a;
+}
+
+.meringue {
+  color: #464372;
+}
+
+/*# sourceMappingURL=recipe.css.map */

@@ -26,11 +26,6 @@ li {
     }
 }
 
-body{
-    background-color: lightgray;
-    margin:0;
-}
-
 #name {
     text-align: center;
     font-size: 350%;
@@ -42,39 +37,7 @@ h4 {
     text-align:center;
 }
 
-.col-lg {
-    margin: 5%; 
-    text-align: center;
-    position:relative;
+body{
+    background-color: lightgray;
+    margin:0;
 }
-
-@media (min-width: 770px){
-    %recipe-name{
-        padding-top: 25%;
-        font-weight: bold;
-    }
-}
-
-@media(max-width: 769px){
-    %recipe-name{
-        padding-top: 10%;
-        font-weight: bold;
-        font-size: 150%;
-    }
-}
-
-.berry{
-    @extend %recipe-name;
-    color: red;
-}
-
-.fry{
-    @extend %recipe-name;
-    color: rgb(223, 149, 10);
-}
-
-.meringue{
-    @extend %recipe-name;
-    color: rgb(70, 67, 114);
-}
-

@@ -9,55 +9,35 @@ ul {
 li {
   float: left;
 }
-
 li a {
   display: block;
   color: #666;
-  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li a:hover:not(.active) {
   background-color: #ADD8E6;
   color: white;
 }
-
 li a.active {
   color: white;
   background-color: #ADD8E6;
 }
 
-#title {
+#name {
   text-align: center;
+  font-size: 350%;
   font-family: "Candara";
-  font-size: 200%;
 }
 
-#skyline-image {
-  position: relative;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+h4 {
+  font-family: "Candara";
+  text-align: center;
 }
 
 body {
-  margin: 0 auto;
+  background-color: lightgray;
+  margin: 0;
 }
 
-#name {
-  text-align: center;
-  font-family: "Candara";
-  font-size: 350%;
-}
-
-#profile-image {
-  display: block;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  position: center;
-}
-
-/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=garden.css.map */
