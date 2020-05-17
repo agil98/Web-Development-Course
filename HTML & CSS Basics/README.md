@@ -1,6 +1,6 @@
 # Project 0
 
-## Web Programming with Python and JavaScript
+### Web Programming with Python and JavaScript
 
 Project Requirements (website must contain):
 
