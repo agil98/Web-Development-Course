@@ -1,4 +1,4 @@
-# Web Programming with Python and JavaScript
+# HTML & CSS Basics
 
 Project Requirements (website must contain):
 
