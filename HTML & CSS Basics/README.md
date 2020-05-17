@@ -11,9 +11,9 @@ Project Requirements (website must contain):
 <li> At least one list (ordered or unordered), at least one table, and at least one image.
 
 <li> At least one stylesheet file.
-The stylesheet(s) must use at least five different CSS properties, and at least five different types of CSS selector, and use the `#id` selector at least once, and the `.class` selector at least once.
+The stylesheet(s) must use at least five different CSS properties, and at least five different types of CSS selector, and use the #id selector at least once, and the .class selector at least once.
 
-<li> At least one mobile-responsive `@media` query, such that something about the styling changes for smaller screens.
+<li> At least one mobile-responsive @media query, such that something about the styling changes for smaller screens.
 
 <li> Bootstrap 4 on your website, taking advantage of at least one Bootstrap component, and using at least two Bootstrap columns for layout purposes using Bootstrap’s grid model.
 
