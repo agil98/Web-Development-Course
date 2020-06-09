@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #f1f1f1;
+            }
+            input[type=text], input[type=password] {
+              width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
+              box-sizing: border-box;
+              border-radius: 2%;
+            }
+            .box {
+                margin: 0 auto;
+                width: 50%;
+            }
+            .imgcontainer {
+                text-align: center;
+                margin: 12px 0 6px 0;
+            }
+            .avatar {
+                width:50%;
+            }
+            button {
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 2%;
+              cursor: pointer;
+              text-align:center;
+              display:block;
+            }
+            button:hover {
+              opacity: 0.8;
+            }
+            .login-btn{
+              background-color: #707070;
+              width: 50%;
+            }
+            .register-btn{
+                background-color: #A8A8A8;
+                width: 50%;
+            }
+            @media (min-width: 750px) {
+                .avatar{
+                    width:25%;
+                }
+                .register{
+                    float:right;
+                }
+                .login{
+                    float:left;
+                }
+                .register-btn{
+                    width: 80%;
+                }
+                .login-btn{
+                    width:200%;
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="imgcontainer">
+            <img src="https://lh3.googleusercontent.com/proxy/FrS6tRoQXUQzFoiLxt_PPEnWE-lLg59kzBbt5W3D_OK0DH6-qQqCF0-dfwv7qL8YQ9vvqZX3HkEfTMJJFZ1cp20h8y8X3Blj8-_unAtjpcYz3BB5" alt="Avatar" class="avatar">
+        </div>
+        <div class="box">
+            <form action="{{ url_for('login') }}" method="post">
+                <label for="username" class = "label"><b>Username</b></label>
+                <div>
+                    <input type="text" name="username" placeholder="Enter Username" autofocus="">
+                </div>
+
+                <label for="password"><b>Password</b></label>
+                <div>
+                    <input type="password" name="password" placeholder="Enter password">
+                </div>
+                <div class="login"style="float:center">
+                    <br><br>
+                    <button class="login-btn">Login</button>
+                </div>
+                <div class="register"style="float:center">
+                    <p> Don't have an account yet? </p>
+                    <button class="register-btn">Register</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
