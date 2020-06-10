@@ -39,29 +39,29 @@
             button:hover {
               opacity: 0.8;
             }
-            .login-btn{
+            .signup-btn{
               background-color: #6699cc ;
               width: 50%;
             }
-            .register-btn{
+            .login-btn{
                 background-color: #A8A8A8;
                 width: 50%;
             }
             @media (min-width: 750px) {
                 .avatar{
-                    width:25%;
-                }
-                .register{
-                    float:right;
+                    width:22%;
                 }
                 .login{
+                    float:right;
+                }
+                .signup{
                     float:left;
                 }
-                .register-btn{
-                    width: 80%;
-                }
                 .login-btn{
-                    width:200%;
+                    width: 100%;
+                }
+                .signup-btn{
+                    width:120%;
                 }
             }
 
@@ -69,10 +69,15 @@
     </head>
     <body>
         <div class="imgcontainer">
-            <img src="https://lh3.googleusercontent.com/proxy/FrS6tRoQXUQzFoiLxt_PPEnWE-lLg59kzBbt5W3D_OK0DH6-qQqCF0-dfwv7qL8YQ9vvqZX3HkEfTMJJFZ1cp20h8y8X3Blj8-_unAtjpcYz3BB5" alt="Avatar" class="avatar">
+            <img src="https://cdn.iconscout.com/icon/free/png-512/avatar-375-456327.png" alt="Avatar" class="avatar">
         </div>
         <div class="box">
-            <form action="{{ url_for('login') }}" method="post">
+            <form action="{{ url_for('signup') }}" method="post">
+                <label for="name" class = "label"><b>Username</b></label>
+                <div>
+                    <input type="text" name="name" placeholder="Enter Name" autofocus="">
+                </div>
+
                 <label for="username" class = "label"><b>Username</b></label>
                 <div>
                     <input type="text" name="username" placeholder="Enter Username" autofocus="">
@@ -82,13 +87,13 @@
                 <div>
                     <input type="password" name="password" placeholder="Enter password">
                 </div>
-                <div class="login"style="float:center">
+                <div class="signup"style="float:center">
                     <br><br>
-                    <button class="login-btn">LOGIN</button>
+                    <button class="signup-btn">SIGN UP</button>
                 </div>
-                <div class="register"style="float:center">
-                    <p> Don't have an account yet? </p>
-                    <button class="register-btn">Register</button>
+                <div class="login"style="float:center">
+                    <p> Already an user? </p>
+                    <button class="login-btn">Log in</button>
                 </div>
             </form>
         </div>
