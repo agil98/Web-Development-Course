@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <style>
+    <head>
+        <style>
             body {
                 font-family: Arial, Helvetica, sans-serif;
                 background-color: #f1f1f1;
@@ -69,7 +70,7 @@
     </head>
     <body>
         <div class="imgcontainer">
-            <img src="https://lh3.googleusercontent.com/proxy/FrS6tRoQXUQzFoiLxt_PPEnWE-lLg59kzBbt5W3D_OK0DH6-qQqCF0-dfwv7qL8YQ9vvqZX3HkEfTMJJFZ1cp20h8y8X3Blj8-_unAtjpcYz3BB5" alt="Avatar" class="avatar">
+            <img src="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png" alt="Avatar" class="avatar">
         </div>
         <div class="box">
             <form action="{{ url_for('login') }}" method="post">
@@ -82,13 +83,16 @@
                 <div>
                     <input type="password" name="password" placeholder="Enter password">
                 </div>
+                {% if username_not_valid %}
+                <p style="color: lightcoral;"> <b>Sorry, the username and/or password is not valid</b></p>
+                {% endif %}
                 <div class="login"style="float:center">
                     <br><br>
-                    <button class="login-btn">LOGIN</button>
+                    <button class="login-btn" name="login" value="login">LOGIN</button>
                 </div>
                 <div class="register"style="float:center">
                     <p> Don't have an account yet? </p>
-                    <button class="register-btn">Register</button>
+                    <button class="register-btn" name="signup" value="signup">REGISTER</button>
                 </div>
             </form>
         </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <style>
+    <head>
+        <style>
             body {
                 font-family: Arial, Helvetica, sans-serif;
                 background-color: #f1f1f1;
@@ -73,27 +74,28 @@
         </div>
         <div class="box">
             <form action="{{ url_for('signup') }}" method="post">
-                <label for="name" class = "label"><b>Username</b></label>
+                <label for="name" class = "label"><b>Name</b></label>
                 <div>
                     <input type="text" name="name" placeholder="Enter Name" autofocus="">
                 </div>
-
                 <label for="username" class = "label"><b>Username</b></label>
                 <div>
                     <input type="text" name="username" placeholder="Enter Username" autofocus="">
                 </div>
-
                 <label for="password"><b>Password</b></label>
                 <div>
                     <input type="password" name="password" placeholder="Enter password">
                 </div>
+                {% if username_exists %}
+                <p style="color: lightcoral;"> <b>Sorry, that username already exists</b></p>
+                {% endif %}
                 <div class="signup"style="float:center">
                     <br><br>
-                    <button class="signup-btn">SIGN UP</button>
+                    <button class="signup-btn" name="signup" value="signup">SIGN UP</button>
                 </div>
                 <div class="login"style="float:center">
                     <p> Already an user? </p>
-                    <button class="login-btn">Log in</button>
+                    <button class="login-btn" name="login" value="login">LOGIN</button>
                 </div>
             </form>
         </div>
