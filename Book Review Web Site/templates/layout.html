@@ -36,14 +36,16 @@
                 </li>
                 <li class="nav-item">
                     <form action="{{url_for('search')}}" class="navbar-form navbar-right" method="post">
-                        <button name="favorites" value="favorites" class="btn btn-default" style="border: none; background-color: #6699cc;">
-                            <span class="glyphicon glyphicon-star" name = "favorites" value = "favorites" ></span> Favorites
-                        </button>
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" name="key_word">
-                        </div>
+                            <input type="text" class="form-control" placeholder="Search" name="key_word">
+                            </div>
                         <button name = "search" value="search" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </form>
+                    <form action="{{url_for('search')}}" class="navbar-form navbar-right" method="post">
+                        <button name="favorites" value="favorites" class="btn btn-default" style="border: none; background-color: #6699cc;">
+                            <span class="glyphicon glyphicon-star" name = "favorites" value = "favorites" ></span> Favorites
                         </button>
                     </form>
                 </li>

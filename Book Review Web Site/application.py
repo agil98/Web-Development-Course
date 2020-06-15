@@ -57,7 +57,7 @@ def check_login(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get("user_id") is not None:
-            return redirect("/main")
+            return render_template("main.html", db.execute("SELECT * FROM books ORDER BY RANDOM()").first())
         return f(*args, **kwargs)
     return decorated_function
 
@@ -91,16 +91,17 @@ def login():
     if request.method == "POST":
         if 'signup' in request.form:
             return render_template("signup.html", username_exists=False)
-        else:
+        elif 'login' in request.form:
             input_username = request.form.get('username')
             input_password = request.form.get('password')
-            user = db.query(User).filter(User.username==input_username and User.password==input_password).first()
+            user = db.query(User).filter(User.username==input_username, User.password==input_password).first()
             if user is None:
                 return render_template("login.html", username_not_valid=True)
             else:
                 session["user_id"] = user.id
                 session["user_name"] = user.name
-                return render_template("main.html", name=user.name)
+                
+                return render_template("main.html", name=user.name, book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first())
     else:
         return render_template("login.html")
 
@@ -119,7 +120,9 @@ def signup():
                 user = User(name = input_name, username = input_username, password = input_password)
                 db.add(user)
                 db.commit()
-                return render_template("main.html")
+                session["user_id"] = user.id
+                session["user_name"] = user.name
+                return render_template("main.html", book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first())
             else:
                 return render_template("signup.html", username_exists=True)
     return render_template("signup.html", username_exists=False)
@@ -127,15 +130,13 @@ def signup():
 @app.route("/main", methods=["GET"])
 @login_required
 def main():
-    book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first()
-    return render_template("main.html", book =  book)
+    return render_template("main.html", book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first())
 
 @app.route("/profile", methods=["GET", "POST"])
+@login_required
 def profile():
     if request.method == 'POST':
         new_name = request.form.get('name')
-        #db.execute("UPDATE users SET name = " + new_name + " WHERE id = " + session["user_id"])
-        #db.commit()
         db.query(User).filter(User.name == session['user_name']).update({User.name:new_name}, synchronize_session = False)
         db.commit()
         session['user_name'] = new_name
@@ -149,12 +150,11 @@ def search():
             key_word = request.form.get('key_word')
             search = '%' + key_word + '%'
             books = db.execute("SELECT * FROM books WHERE LOWER(ISBN) LIKE LOWER(:search) OR LOWER(title) LIKE LOWER(:search) OR LOWER(author) LIKE LOWER(:search) ", {"search": search}).fetchall()
-            ## Should add reviews to the book list
             return render_template('search.html', books=books, key_word=key_word)
         elif 'favorites' in request.form:
-            books = db.query(Book).join(Review, Book.isbn == Review.book_id).filter(Review.score > 3)
+            books = db.query(Book).join(Review, Book.isbn == Review.book_id).join(User, User.id == Review.user_id).filter(Review.score > 3, User.id == session["user_id"])
             return render_template('search.html', books=books, key_word='Favorite books')
-    return render_template("main.html")
+    return render_template("main.html", book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first())
 
 
 @app.route("/book/<string:isbn>", methods=["GET","POST"])
@@ -171,12 +171,11 @@ def book(isbn):
         score = request.form.get('rating')
         user_review = request.form.get('review')
         review = Review(user_id = session['user_id'], book_id = book.isbn, score = int(score), review = user_review)
-        
         db.add(review)
         db.commit()
         return render_template("book.html", book = book, avg_rating = avg_rating, reviews_count=reviews_count, no_review = False, review = review.review, score = review.score)
 
-    reviews = db.query(Review).filter(Review.book_id==isbn and Review.user_id == session['user_id']).first()
+    reviews = db.query(Review).filter(Review.book_id==isbn, Review.user_id == session['user_id']).first()
     if reviews is None:
         return render_template("book.html", book = book, avg_rating = avg_rating, reviews_count=reviews_count, no_review = True, review = ' ', score = ' ')
     else:
