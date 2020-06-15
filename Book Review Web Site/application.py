@@ -106,33 +106,39 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if 'login' in request.form:
-        return render_template("login.html")
-    else:
-        input_name = request.form.get('name')
-        input_username = request.form.get('username')
-        input_password = request.form.get('password')
-        user = db.query(User).filter(User.username==input_username).first()
-        if user is None:
-            user = User(name = input_name, username = input_username, password = input_password)
-            db.add(user)
-            db.commit()
-            return render_template("main.html")
+    session.clear()
+    if request.method == "POST":
+        if 'login' in request.form:
+            return render_template("login.html")
         else:
-            return render_template("signup.html", username_exists=True)
+            input_name = request.form.get('name')
+            input_username = request.form.get('username')
+            input_password = request.form.get('password')
+            user = db.query(User).filter(User.username==input_username).first()
+            if user is None:
+                user = User(name = input_name, username = input_username, password = input_password)
+                db.add(user)
+                db.commit()
+                return render_template("main.html")
+            else:
+                return render_template("signup.html", username_exists=True)
+    return render_template("signup.html", username_exists=False)
 
 @app.route("/main", methods=["GET"])
 @login_required
 def main():
-    return render_template("main.html")
+    book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first()
+    return render_template("main.html", book =  book)
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    if 'update' in request.form:
+    if request.method == 'POST':
         new_name = request.form.get('name')
-        db.query(Users).filter(User.name == session['user_name']).update({User.name:new_name}, synchronize_session = True)
+        #db.execute("UPDATE users SET name = " + new_name + " WHERE id = " + session["user_id"])
+        #db.commit()
+        db.query(User).filter(User.name == session['user_name']).update({User.name:new_name}, synchronize_session = False)
         db.commit()
-        user.name = new_name
+        session['user_name'] = new_name
     return render_template("profile.html", current_user=session['user_name'])
 
 @app.route("/search", methods=["GET", "POST"])
@@ -148,8 +154,6 @@ def search():
         elif 'favorites' in request.form:
             books = db.query(Book).join(Review, Book.isbn == Review.book_id).filter(Review.score > 3)
             return render_template('search.html', books=books, key_word='Favorite books')
-        else:
-             return render_template("main.html")
     return render_template("main.html")
 
 
@@ -164,11 +168,26 @@ def book(isbn):
     reviews_count= data['books'][0]['reviews_count']
 
     if request.method == 'POST':
-        score  = request.form('rating')
-        review = request.form.get('review')
-        review = Review(user = session['user_name'], book = book.isbn, score = int(score), review = review)
+        score = request.form.get('rating')
+        user_review = request.form.get('review')
+        review = Review(user_id = session['user_id'], book_id = book.isbn, score = int(score), review = user_review)
+        
         db.add(review)
         db.commit()
+        return render_template("book.html", book = book, avg_rating = avg_rating, reviews_count=reviews_count, no_review = False, review = review.review, score = review.score)
 
-    return render_template("book.html", book = book, avg_rating = avg_rating, reviews_count=reviews_count)
+    reviews = db.query(Review).filter(Review.book_id==isbn and Review.user_id == session['user_id']).first()
+    if reviews is None:
+        return render_template("book.html", book = book, avg_rating = avg_rating, reviews_count=reviews_count, no_review = True, review = ' ', score = ' ')
+    else:
+        return render_template("book.html", book = book, avg_rating = avg_rating, reviews_count=reviews_count, no_review = False, review = reviews.review, score = reviews.score)
 
+@app.route("/logout")
+def logout():
+    """ Log user out """
+
+    # Forget any user ID
+    session.clear()
+
+    # Redirect user to login form
+    return redirect("/")

@@ -76,6 +76,14 @@
 .star-rating.star-3 i {width: 33.33%;}
 .star-rating.star-3 i ~ i {width: 66.66%;}
 .star-rating.star-3 i ~ i ~ i {width: 100%;}
+
+.stars > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  font-size: 50px;
+}
+
 </style>
 
 <div>
@@ -99,23 +107,42 @@
             </h5>
         </div>
     </div>
-    <div class="dropdown-divider"></div>
-    <div class="imgcontainer" style="display: block; margin: auto; text-align: center;">
-        <h1 style="font-family: Garamond;">Leave a Review</h1>
-        <span class="star-rating star-5">
-            <input type="radio" name="rating" value="1"><i></i>
-            <input type="radio" name="rating" value="2"><i></i>
-            <input type="radio" name="rating" value="3"><i></i>
-            <input type="radio" name="rating" value="4"><i></i>
-            <input type="radio" name="rating" value="5"><i></i>
-        </span>
-        <br><br>
-        <form>
-            <div>
-                <textarea name="review" cols="80" rows="5" placeholder="Enter review here..."></textarea>
+    {% if no_review %}
+        <div class="imgcontainer" style="display: block; margin: auto; text-align: center;">
+            <h1 style="font-family: Garamond;">Leave a Review</h1>
+            <form action="{{ url_for('book', isbn=book.isbn) }}" method = "post">
+                <span class="star-rating star-5">
+                    <input type="radio" name="rating" value="1"><i></i>
+                    <input type="radio" name="rating" value="2"><i></i>
+                    <input type="radio" name="rating" value="3"><i></i>
+                    <input type="radio" name="rating" value="4"><i></i>
+                    <input type="radio" name="rating" value="5"><i></i>
+                </span>
+                <br> <br>
+                <div>
+                    <textarea name="review" cols="80" rows="5" placeholder="Enter review here..."></textarea>
+                </div>
+                <button>Submit</button>
+            </form>
+        </div>
+    {% else %}
+        <br> <br>
+        <div style=" text-align: center;">
+            <p> You already reviewed this book: <i style = "font-size: 80px; font-family: Brush Script MT;">"{{ review }}"</i></p>
+            <div class = "stars">
+                {% if score == 1 %}
+                <span>☆</span>
+                {% elif score == 2 %}
+                <span>☆</span><span>☆</span>
+                {% elif score == 3 %}
+                <span>☆</span><span>☆</span><span>☆</span>
+                {% elif score == 4 %}
+                <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                {% else %}
+                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                {% endif %}
             </div>
-            <button>Submit</button>
-        </form>
-    </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
