@@ -1,12 +1,13 @@
 {% extends 'layout.html' %}
 {% block title %} Update Profile {% endblock %}
 {% block body %}
-    <div class="imgcontainer" style="margin:auto">
+    <div class="imgcontainer" style="margin: 0 auto;
+    width: 50%;">
         <img src="static/profile.png"\>
     </div>
-    <div style="margin: 0 auto;
+    <div style="display:block; margin: 0 auto;
     width: 50%;">
-        <h1> Current name</h1>
+        <h1>{{current_user}}</h1>
         <form>
             <div style="float:right; margin-left:10px">
                 <br>
