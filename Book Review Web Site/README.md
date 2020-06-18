@@ -1,5 +1,5 @@
 # Book Review Site
-A Flask website using [SQLAlchemy ORM](https://docs.sqlalchemy.org/en/13/orm/) that allows users to review books. It makes user of [Goodreads API](https://www.goodreads.com/) to pull in ratings from a broader audience. It allows users to create an account, search books and submit a rating and a review for each book. Users can easily view their favorites books as well as popular books in the site.
+A Flask website using [SQLAlchemy ORM](https://docs.sqlalchemy.org/en/13/orm/) that allows users to review books. It makes use of [Goodreads API](https://www.goodreads.com/) to pull in ratings from a broader audience. It allows users to create an account, search books and submit a rating and a review for each book. Users can easily view their favorites books as well as popular books in the site.
 
 ![](https://github.com/agil98/Web-Development-Course/blob/master/Book%20Review%20Web%20Site/static/Login.PNG)
 ![](https://github.com/agil98/Web-Development-Course/blob/master/Book%20Review%20Web%20Site/static/Main.PNG)
