@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div>
+            <form action="{{ url_for('channel') }}" method="post">
+                <ul>
+                    <select class="form-control" name="channel_id">
+                    {% for key, value in channels.items() %}
+                        <option value="{{ key }}">
+                            {{value}}
+                        </option>
+                    {% endfor %}
+                    </select>
+                </ul>
+                <div class="form-group">
+                    <button class="btn btn-primary">Check out</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
