@@ -31,7 +31,7 @@
         } )
         socket.on( 'message sent', (msg) => {
           console.log(msg)
-            $('#message_holder').append('<li><i>'+msg.timestamp+'<b style="color: #000">'+msg.username+'</b>>'+msg.message+'</li>');
+            $('#message_holder').append('<li><i>'+msg.timestamp+'</i><b style="color: #000"> '+msg.username+'</b>>'+msg.message+'</li>');
         })
       </script>
       <ul id="message_holder">

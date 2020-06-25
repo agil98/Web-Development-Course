@@ -24,9 +24,9 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+@login_required
 @app.route("/")
 def index():
-    print(channels)
     return render_template("index.html", channels=channels.keys())
 
 @app.route("/signin", methods=['GET', 'POST'])
@@ -51,6 +51,7 @@ def logout():
     session.clear()
     return render_template('signin.html')
 
+@login_required
 @app.route('/create', methods=["POST", "GET"])
 def create():
     if request.method=='POST':
@@ -63,7 +64,7 @@ def create():
             return render_template('index.html', channels=channels.keys())
     return render_template('create.html', already_exists = False)
 
-
+@login_required
 @app.route('/channel/<string:name>', methods=["POST", "GET"])
 def channel(name):
     current_messages = channels[name]
