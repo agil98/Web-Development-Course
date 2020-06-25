@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="static/index.css">
+        <script>
+            function myFunction() {
+                // Declare variables
+                var input, filter, ul, li, a, i, txtValue;
+                input = document.getElementById('myInput');
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("myUL");
+                li = ul.getElementsByTagName('li');
 
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                    } else {
+                    li[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
     </head>
     <body>
-        <div>
-            <form action="{{ url_for('channel') }}" method="post">
-                <ul>
-                    <select class="form-control" name="channel_id">
-                    {% for key, value in channels.items() %}
-                        <option value="{{ key }}">
-                            {{value}}
-                        </option>
-                    {% endfor %}
-                    </select>
+        <div style="margin: auto; width: 50%;">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                <ul id="myUL">
+                {% for channel in channels %}
+                <li><a href="{{ url_for('channel', name=channel)}}">{{ channel }}</a></li>
+                {% endfor %}
                 </ul>
-                <div class="form-group">
-                    <button class="btn btn-primary">Check out</button>
-                </div>
-            </form>
+            </input>
         </div>
     </body>
 </html>
