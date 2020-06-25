@@ -1,15 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-
-    </head>
-    <body>
-        <div style ="margin: auto; width: 50%">
+{% extends 'layout.html' %}
+{% block title %} Create channel {% endblock %}
+{% block body %}
+<style>
+#create{
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    background-color: #f8f8ff
+}
+</style>
+        <div style ="margin: auto; width: 50%; text-align:center">
             <form method="post">
-                <h1> Create channel </h1>
-                <input style="border-radius: black;" name="name" placeholder="Name">
-                <button>Create</button>
+                <h1 style="font-family: Courier;"> Create channel </h1>
+                <br>
+                {% if already_exists%}
+                <p style="color: red;"> Sorry, channel already exists. Pick a new name</p>
+                {% endif %}
+                <input id = "create" name="name" placeholder="Name">
             </form>
         </div>
-    </body>
-</html>
+{% endblock %}

@@ -1,17 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="static/signin.css">
-        <h1>Sign up to connect with others!</h1> 
+        <style>
+            body{
+                background-color: #eee;
+            }
+            h1{
+                text-align: center;
+                font-family: Courier;
+            }
+            .container{
+                margin: 0 auto;
+                text-align: center;
+                width: 50%;
+            }
+            #input{
+                background-position: 10px 12px; /* Position the search icon */
+                background-repeat: no-repeat; /* Do not repeat the icon image */
+                width: 100%; /* Full-width */
+                font-size: 16px; /* Increase font-size */
+                padding: 12px 20px 12px 40px; /* Add some padding */
+                border: 1px solid #ddd; /* Add a grey border */
+                margin-bottom: 12px; /* Add some space below the input */
+                background-color: #f8f8ff;
+            }
+            #imgcontainer{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 20%;
+            }
+        </style>
     </head>
     <body>
+        <div id="imgcontainer">
+            <img src='https://www.shareicon.net/data/512x512/2015/09/26/107336_social_512x512.png' style="width:50%"/>
+        </div>
+        <h1>Sign up to connect with others!</h1> 
         <div class="container">
+            <p> Pick a display name </p>
             <form action="{{ url_for('signin') }}" method="post">
-                <label for="display_name" class="label" > 
-                    Pick a display name
-                </label>
-                <br>
-                <input type="text" name="display_name">
+                <input id="input" type="text" name="display_name">
             </form>
         </div>
     </body>

@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <title>Channel</title>
+{% extends 'layout.html' %}
+{% block title %} {{name}} {% endblock %}
+{% block body %}
       <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font: 13px Helvetica, Arial; }
-        form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-        form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+        form {padding: 3px; position: fixed; bottom: 0; width: 80%; }
+        form input {padding: 10px; width: 90%; margin-right: .5%; background-color: #f8f8ff }
         form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-        #message_holder { list-style-type: none; margin: 0; padding: 0; }
+        #message_holder {list-style-type: none; margin: 0; padding: 0; }
         #message_holder li { padding: 5px 10px; }
-        #message_holder li:nth-child(odd) { background: #eee; }
+        #message_holder li:nth-child(even) { background: #f8f8ff; }
         #message_holder { margin-bottom: 40px }
       </style>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -22,27 +21,26 @@
           var form = $( 'form' ).on( 'submit', function( e ) {
             e.preventDefault()
             let message = document.getElementById('message').value
+            let timestamp = new Date;
+            timestamp = timestamp.toLocaleTimeString();
             socket.emit( 'sending message', {
-              message : message
+              message : message,
+              timestamp : timestamp
             } )
           } )
         } )
         socket.on( 'message sent', (msg) => {
           console.log(msg)
-            $('#message_holder').append('<li><b style="color: #000">'+msg.username+'</b>>'+msg.message+'</li>');
+            $('#message_holder').append('<li><i>'+msg.timestamp+'<b style="color: #000">'+msg.username+'</b>>'+msg.message+'</li>');
         })
       </script>
-    </head>
-    <body>
       <ul id="message_holder">
       {% for message in messages %}
-        <li><b style="color: #000">{{ message[0] }}</b>>{{ message[1] }} </li>
+        <li><i>{{message[2]}} </i><b style="color: #000">{{ message[0] }}</b>>{{ message[1] }} </li>
       {% endfor %}
     </ul>
       <form action="" method="POST">
         <input type="text" id="message" placeholder="Message"/>
         <button>Send</button>
       </form>
-
-    </body>
-  </html>
+      {% endblock %}
