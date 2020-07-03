@@ -27,7 +27,7 @@ def login_required(f):
 @login_required
 @app.route("/")
 def index():
-    return render_template("index.html", channels=channels.keys())
+    return render_template("index.html", channels=channels.keys(), name=session["username"])
 
 @app.route("/signin", methods=['GET', 'POST'])
 def signin():
@@ -42,10 +42,6 @@ def signin():
     else:
         return render_template("signin.html")
 
-@app.route('/layout', methods=["GET"])
-def layout():
-    return render_template('layout.html')
-
 @app.route('/logout')
 def logout():
     session.clear()
@@ -57,19 +53,19 @@ def create():
     if request.method=='POST':
         key = request.form.get("name")
         if key in channels.keys():
-            return render_template('create.html', already_exists = True)
+            return render_template('create.html', already_exists = True, name=session["username"])
         else:
             current_messages = []
             channels[key] = current_messages
-            return render_template('index.html', channels=channels.keys())
-    return render_template('create.html', already_exists = False)
+            return render_template('index.html', channels=channels.keys(), name=session["username"])
+    return render_template('create.html', already_exists = False, name=session["username"])
 
 @login_required
 @app.route('/channel/<string:name>', methods=["POST", "GET"])
 def channel(name):
     current_messages = channels[name]
     session["current_channel"] = name
-    return render_template('channel.html', messages = current_messages, name = name)
+    return render_template('channel.html', messages = current_messages, name = name, username = session["username"])
 
 @socketio.on('sending message')
 def send_message(json, methods=['GET', 'POST']):

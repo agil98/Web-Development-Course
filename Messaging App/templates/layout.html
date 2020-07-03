@@ -20,7 +20,9 @@
   </style>
 </head>
 <body>
-
+<div style="float:right; margin:5px; margin-right: 15px;">
+  <h2>Hi, {% block name %} {% endblock %} !</h2>
+</div>
 <nav class="navbar  navbar-light" style="width: 10%; float:left">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -38,6 +40,11 @@
     </ul>
   </div>  
 </nav>
+
+<div>
+  <h1 style="font-family: Courier; text-align: center;"> {% block channel %} {% endblock %} </h1>
+</div>
+
 <br>
 
 <div class="container" >
