@@ -26,6 +26,7 @@ class Pasta(models.Model):
 
 class Sub(models.Model):
     name = models.CharField(max_length=64)
+    size = models.CharField(max_length = 64, choices = SIZE, default='small')
     price = models.DecimalField(max_digits=4, decimal_places=2)
     def __str__(self):
         return f"{self.name} - {self.price}"

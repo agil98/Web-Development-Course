@@ -14,3 +14,5 @@ Messaging App/.env/
 Messaging App/__pycache__/
 Pizza Delivery Site/env/
 Pizza Delivery Site/__pycache__/
+
+*.pyc
