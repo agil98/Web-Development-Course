@@ -4,12 +4,16 @@
     {% block head %}
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            overflow-x:hidden;
+            }
+    </style>
     </head>
 
     <body style="background-color: #B4CFEC; ">
@@ -26,8 +30,6 @@
                             <span class="glyphicon glyphicon-user"></span> Profile
                         </button>
                     </form>
-                </li>
-                <li class="nav-item">
                     <form action="{{url_for('search')}}" class="navbar-form navbar-right" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search" name="key_word">
@@ -39,6 +41,11 @@
                     <form action="{{url_for('search')}}" class="navbar-form navbar-right" method="post">
                         <button name="favorites" value="favorites" class="btn btn-default" style="border: none; background-color: #6699cc;">
                             <span class="glyphicon glyphicon-star" name = "favorites" value = "favorites" ></span> Favorites
+                        </button>
+                    </form>
+                    <form action="{{url_for('search')}}" class="navbar-form navbar-right" method="post">
+                        <button name="popular" value="popular" class="btn btn-default" style="border: none; background-color: #6699cc;">
+                            <span class="glyphicon glyphicon-star" name = "popular" value = "popular" ></span> Populars
                         </button>
                     </form>
                 </li>

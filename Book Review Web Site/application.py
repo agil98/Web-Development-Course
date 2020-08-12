@@ -153,9 +153,11 @@ def search():
             return render_template('search.html', books=books, key_word=key_word)
         elif 'favorites' in request.form:
             books = db.query(Book).join(Review, Book.isbn == Review.book_id).join(User, User.id == Review.user_id).filter(Review.score > 3, User.id == session["user_id"])
-            return render_template('search.html', books=books, key_word='Favorite books')
+            return render_template('search.html', books=books, key_word='My Favorite books')
+        elif 'popular' in request.form:
+            books = db.query(Book).join(Review, Book.isbn == Review.book_id).filter(Review.score > 3)
+            return render_template('search.html', books=books, key_word='Popular books in the site')
     return render_template("main.html", book = db.execute("SELECT * FROM books ORDER BY RANDOM()").first())
-
 
 @app.route("/book/<string:isbn>", methods=["GET","POST"])
 @login_required
