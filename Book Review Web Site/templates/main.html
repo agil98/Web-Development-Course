@@ -3,10 +3,16 @@
 {% block body %}
   <div class="imgcontainer" style="text-align: center; margin: 0 auto;">
     <br> <br> 
-    <h1 style = "font-size: 80px; font-family: Brush Script MT;"> Book of the Day:</h1>
+    <h1 style = "font-size: 80px; font-family: Brush Script MT;"> Book Highlight:</h1>
     <h1 style = "font-size: 80px; font-family: Brush Script MT;"> {{book.title}} </h1>
       <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg">
-      <h3 style="font-family: Brush Script MT;"> Why don't you try searching for more awesome books? </h3>
-  </div>
+      <h2 style="font-family: Garamond;"> Why don't you try searching for more awesome books? </h2>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text"> Average Ratings from GoodReads: {{rating}} </p>
+        </div>
+      </div>
+    </div>
 {% endblock %}
 

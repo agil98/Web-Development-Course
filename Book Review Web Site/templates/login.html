@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <head>
         <style>
-            body {
+            body, h1 {
                 font-family: Arial, Helvetica, sans-serif;
                 background-color: #f1f1f1;
             }
@@ -70,7 +76,7 @@
     </head>
     <body>
         <div class="imgcontainer">
-            <img src="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png" alt="Avatar" class="avatar">
+            <img src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png" alt="Avatar" class="avatar">
         </div>
         <div class="box">
             <form action="{{ url_for('login') }}" method="post">

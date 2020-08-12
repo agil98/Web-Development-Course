@@ -2,23 +2,18 @@
 {% block title %} Update Profile {% endblock %}
 {% block body %}
     <div class="imgcontainer" style="margin: 0 auto;
-    width: 50%;">
-        <img src="static/profile.png"\>
+    width: 50%; padding: 0px; text-align: center;">
+        <img src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png" width=50%\>
+        <h1>{{current_user}}</h1>
     </div>
     <div style="display:block; margin: 0 auto;
-    width: 50%;">
-        <h1>{{current_user}}</h1>
-        <form action="{{ url_for('profile') }}" method = "post">
-            <div style="float:right; margin-left:10px">
-                <br>
-                <button class="update-btn" name="update" value="update">UPDATE</button>
-            </div>
-            
-            <div style="float:right">
-                <strong style="float:up"> UPDATE NAME </strong>
+    width: 50%; text-align: center;">
+        <form action="{{ url_for('profile') }}" method = "post">            
+            <div>
                 <div style="float:down;">
-                    <input type="text" name="name" placeholder="Enter Name" autofocus="">
+                    <input type="text" name="name" placeholder="Enter New Display Name" autofocus="">
                 </div>
+                <button class="update-btn" name="update" value="update">UPDATE</button>
             </div>
         </form>
     </div>

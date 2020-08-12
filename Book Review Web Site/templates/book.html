@@ -99,11 +99,11 @@
             <h5>ISBN-10: {{book.isbn}}</h5>
         </div>
         <div class="col-sm-4">
-            <h1 style="height:50px; font-family: Brush Script MT;" width="200px"> Goodreads Scoring</h1>
+            <h1 style="font-family: Garamond;" width="200px"> Goodreads Scoring</h1>
             <h5>Nº of Ratings: {{reviews_count}}</h5>
             <h5>Average Score: {{avg_rating}}</h5>
             <h5>
-                <a href="https://www.goodreads.com/search?q={{book.isbn}}">Goodreads page</a>
+                <a href="https://www.goodreads.com/search?q={{book.isbn}}">Visit the page</a>
             </h5>
         </div>
     </div>
@@ -127,19 +127,20 @@
         </div>
     {% else %}
         <br> <br>
-        <div style=" text-align: center;">
-            <p> You already reviewed this book: <i style = "font-size: 80px; font-family: Brush Script MT;">"{{ review }}"</i></p>
+        <div style=" float: center; text-align: left; background-color: beige; padding: 10px; ">
+            <p> You already reviewed this book: </p>
+              <p> Review: <i style = "font-size: 20px; font-family: Optima;">"{{ review }}"</i> </p>
             <div class = "stars">
                 {% if score == 1 %}
-                <span>☆</span>
+                <p> Rating: <span>☆</span></p>
                 {% elif score == 2 %}
-                <span>☆</span><span>☆</span>
+                <p> Rating:<span>☆</span><span>☆</span></p>
                 {% elif score == 3 %}
-                <span>☆</span><span>☆</span><span>☆</span>
+                <p> Rating:<span>☆</span><span>☆</span><span>☆</span></p>
                 {% elif score == 4 %}
-                <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                <p> Rating:<span>☆</span><span>☆</span><span>☆</span><span>☆</span></p>
                 {% else %}
-                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                <p> Rating:<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></p>
                 {% endif %}
             </div>
         </div>
